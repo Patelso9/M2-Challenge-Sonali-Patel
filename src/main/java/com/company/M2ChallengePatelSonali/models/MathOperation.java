@@ -10,7 +10,7 @@ public class MathOperation {
     @NotNull(message= "Please enter an integer for Operand 1")
     Integer operand1;
 
-    @NotNull(message= "Please enter an integer for Operand 1")
+    @NotNull(message= "Please enter an integer for Operand 2")
     Integer operand2;
 
     @NotNull(message= "Please include an operation")
