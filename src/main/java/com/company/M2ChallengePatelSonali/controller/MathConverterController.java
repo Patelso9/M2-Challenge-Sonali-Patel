@@ -17,7 +17,7 @@ public class MathConverterController extends MathOperation {
     private static int mathSolution;
     private static String mathProblem;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @PostMapping(value = "/add")
     @ResponseStatus(value = HttpStatus.CREATED)
     public @Valid MathOperation createAdd(@RequestBody @Valid MathOperation mathOperation){
 
@@ -32,7 +32,7 @@ public class MathConverterController extends MathOperation {
     }
 
 
-    @RequestMapping(value = "/subtract", method = RequestMethod.POST)
+    @PostMapping(value = "/subtract")
     @ResponseStatus(value = HttpStatus.CREATED)
     public @Valid MathOperation createSubtract(@RequestBody @Valid MathOperation mathOperation){
 
@@ -47,7 +47,7 @@ public class MathConverterController extends MathOperation {
     }
 
 
-    @RequestMapping(value = "/multiply", method = RequestMethod.POST)
+    @PostMapping(value = "/multiply")
     @ResponseStatus(value = HttpStatus.CREATED)
     public @Valid MathOperation createMultiply(@RequestBody @Valid MathOperation mathOperation){
 
@@ -61,7 +61,7 @@ public class MathConverterController extends MathOperation {
         return mathOperation;
     }
 
-    @RequestMapping(value = "/divide", method = RequestMethod.POST)
+    @PostMapping(value = "/divide")
     @ResponseStatus(value = HttpStatus.CREATED)
     public @Valid MathOperation createDivide(@RequestBody @Valid MathOperation mathOperation){
 

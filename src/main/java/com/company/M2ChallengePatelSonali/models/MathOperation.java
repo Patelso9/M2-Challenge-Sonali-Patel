@@ -13,7 +13,7 @@ public class MathOperation {
     @NotNull(message= "Please enter an integer for Operand 2")
     Integer operand2;
 
-    @NotNull(message= "Please include an operation")
+//    @NotNull(message= "Please include an operation")
     private String operator;
     private int answer;
 

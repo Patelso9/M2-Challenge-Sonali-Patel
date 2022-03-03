@@ -57,7 +57,7 @@ public class MathConverterControllerTest {
     public void addOperandReqNonInt442Error() throws Exception {
         Map<String, String> mathOperation = new HashMap<>();
         mathOperation.put("operand1", "6");
-        mathOperation.put("operand1", "hotdog");
+        mathOperation.put("operand2", "hotdog");
 
         String inputAdd = mapper.writeValueAsString(mathOperation);
 
@@ -67,6 +67,21 @@ public class MathConverterControllerTest {
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity());
     }
+
+    @Test
+    public void addMissingOperand442Error() throws Exception {
+        Map<String, String> mathOperation = new HashMap<>();
+        mathOperation.put("operand1", "6");
+
+        String inputAdd = mapper.writeValueAsString(mathOperation);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/add")
+                        .content(inputAdd)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
 
 //    SUBTRACT TESTS
     @Test
@@ -89,7 +104,7 @@ public class MathConverterControllerTest {
     public void subtractOperandReqNonInt442Error() throws Exception {
         Map<String, String> mathOperation = new HashMap<>();
         mathOperation.put("operand1", "hotdog");
-        mathOperation.put("operand1", "99");
+        mathOperation.put("operand2", "99");
 
         String inputSubtract = mapper.writeValueAsString(mathOperation);
 
@@ -100,6 +115,19 @@ public class MathConverterControllerTest {
                 .andExpect(status().isUnprocessableEntity());
     }
 
+    @Test
+    public void subtractMissingOperand442Error() throws Exception {
+        Map<String, String> mathOperation = new HashMap<>();
+        mathOperation.put("operand1", "6");
+
+        String input = mapper.writeValueAsString(mathOperation);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/subtract")
+                        .content(input)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
 //    MULTIPLY TESTS
     @Test
@@ -122,12 +150,26 @@ public class MathConverterControllerTest {
     public void multiplyOperandReqNonInt442Error() throws Exception {
         Map<String, String> mathOperation = new HashMap<>();
         mathOperation.put("operand1", "dog is hot");
-        mathOperation.put("operand1", "3");
+        mathOperation.put("operand2", "3");
 
         String inputMultiply = mapper.writeValueAsString(mathOperation);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/multiply")
                         .content(inputMultiply)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void multiplyMissingOperand442Error() throws Exception {
+        Map<String, String> mathOperation = new HashMap<>();
+        mathOperation.put("operand1", "6");
+
+        String input = mapper.writeValueAsString(mathOperation);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/multiply")
+                        .content(input)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity());
@@ -154,7 +196,39 @@ public class MathConverterControllerTest {
     public void divideOperandReqNonInt442Error() throws Exception {
         Map<String, String> mathOperation = new HashMap<>();
         mathOperation.put("operand1", "6");
-        mathOperation.put("operand1", "hotdog");
+        mathOperation.put("operand2", "hotdog");
+
+        String inputDivide = mapper.writeValueAsString(mathOperation);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/divide")
+                        .content(inputDivide)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void divideMissingOperand442Error() throws Exception {
+        Map<String, String> mathOperation = new HashMap<>();
+        mathOperation.put("operand1", "6");
+
+        String input = mapper.writeValueAsString(mathOperation);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/divide")
+                        .content(input)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void divideByZeroReqNonInt442Error() throws Exception {
+//        Map<String, String> mathOperation = new HashMap<>();
+//        mathOperation.put("operand1", "6");
+//        mathOperation.put("operand2", "0");
+
+        MathOperation mathOperation = new MathOperation(8, 0);
+        mathOperation.setOperator("Divide");
 
         String inputDivide = mapper.writeValueAsString(mathOperation);
 

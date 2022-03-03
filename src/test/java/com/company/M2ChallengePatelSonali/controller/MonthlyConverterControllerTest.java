@@ -44,15 +44,15 @@ public class MonthlyConverterControllerTest {
                 .andExpect(content().json(outputMonth));
     }
 
-//    Getting 200 error insteat of 404
-//    @Test
-//    public void monthNotReturned404Error() throws Exception {
-//
-//        mockMvc.perform(get("/month/77"))
-//                .andDo(print())
-//                .andExpect(status().isNotFound());
-//
-//    }
+//    NEED UPDATE ERROR HANDLING - Getting 200 error instead of 404
+    @Test
+    public void monthNotReturned404Error() throws Exception {
+
+        mockMvc.perform(get("/month/77"))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+
+    }
 
     @Test
     public void returnRandomMonth() throws Exception {

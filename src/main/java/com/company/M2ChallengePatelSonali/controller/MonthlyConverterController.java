@@ -4,6 +4,7 @@ import com.company.M2ChallengePatelSonali.exceptions.NotFoundException;
 import com.company.M2ChallengePatelSonali.models.Month;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
@@ -33,18 +34,18 @@ public class MonthlyConverterController {
     @RequestMapping(value = "/month/{monthNumber}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Month getMonthByNum(@PathVariable int monthNumber) {
-        Month foundMonth = null;
+        Month monthFound = null;
 
         for (Month month : monthList) {
             if (month.getMonthNumber() == monthNumber) {
-                foundMonth = month;
+                monthFound = month;
                 break;
             }
-            if ((month.getMonthNumber() >= 13) || (month.getMonthNumber() <= 0)) {
-                throw new NotFoundException("Please enter a number between 1-12");
+            if ((monthNumber > 12 ) || (monthNumber < 0)) {
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "You must enter a Month number between 1-12");
             }
         }
-        return foundMonth;
+        return monthFound;
     }
 
     ;

@@ -48,15 +48,15 @@ public class ControllerExceptionHandler {
         return responseEntity;
     }
 
-//    @ExceptionHandler(value = {.class})
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public ResponseEntity<CustomErrorResponse> indexOutOfBounds(IndexOutOfBoundsException e) {
-//        CustomErrorResponse error = new CustomErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.toString(), e.getMessage());
-//        error.setTimestamp(LocalDateTime.now());
-//        error.setStatus(HttpStatus.NOT_FOUND.value());
-//        ResponseEntity<CustomErrorResponse> responseEntity = new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-//        return responseEntity;
-//    }
+    @ExceptionHandler(value = {ArithmeticException.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ResponseEntity<CustomErrorResponse> divideByZero(ArithmeticException e) {
+        CustomErrorResponse error = new CustomErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.toString(), e.getMessage());
+        error.setTimestamp(LocalDateTime.now());
+        error.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+        ResponseEntity<CustomErrorResponse> responseEntity = new ResponseEntity<>(error, HttpStatus.UNPROCESSABLE_ENTITY);
+        return responseEntity;
+    }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
