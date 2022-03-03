@@ -31,7 +31,7 @@ public class MonthlyConverterController {
     ));
 
     //    Get month number
-    @RequestMapping(value = "/month/{monthNumber}", method = RequestMethod.GET)
+    @GetMapping(value = "/month/{monthNumber}")
     @ResponseStatus(value = HttpStatus.OK)
     public Month getMonthByNum(@PathVariable int monthNumber) {
         Month monthFound = null;
@@ -51,7 +51,7 @@ public class MonthlyConverterController {
     ;
 
     //    Get random month
-    @RequestMapping(value = "/randomMonth")
+    @GetMapping(value = "/randomMonth")
     @ResponseStatus(value = HttpStatus.OK)
     public Month getRandomMonthByNum() {
 

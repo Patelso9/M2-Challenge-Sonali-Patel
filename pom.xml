@@ -11,6 +11,7 @@
 	<groupId>com.company</groupId>
 	<artifactId>M2-Challenge-Patel-Sonali</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<name>M2-Challenge-Patel-Sonali</name>
 	<description>M2 challenge</description>
 	<properties>
@@ -31,6 +32,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.6</version>
 		</dependency>
 
 		<dependency>

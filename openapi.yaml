@@ -1,0 +1,247 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /subtract:
+    post:
+      tags:
+        - math-converter-controller
+      operationId: createSubtract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MathOperation'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MathOperation'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+  /multiply:
+    post:
+      tags:
+        - math-converter-controller
+      operationId: createMultiply
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MathOperation'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MathOperation'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+  /divide:
+    post:
+      tags:
+        - math-converter-controller
+      operationId: createDivide
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MathOperation'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MathOperation'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+  /add:
+    post:
+      tags:
+        - math-converter-controller
+      operationId: createAdd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MathOperation'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MathOperation'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+  /randomMonth:
+    get:
+      tags:
+        - monthly-converter-controller
+      operationId: getRandomMonthByNum
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Month'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+  /month/{monthNumber}:
+    get:
+      tags:
+        - monthly-converter-controller
+      operationId: getMonthByNum
+      parameters:
+        - name: monthNumber
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Month'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+components:
+  schemas:
+    CustomErrorResponse:
+      type: object
+      properties:
+        errorMsg:
+          type: string
+        status:
+          type: integer
+          format: int32
+        errorCode:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    MathOperation:
+      required:
+        - operand1
+        - operand2
+      type: object
+      properties:
+        operand1:
+          type: integer
+          format: int32
+        operand2:
+          type: integer
+          format: int32
+        operator:
+          type: string
+        answer:
+          type: integer
+          format: int32
+    Month:
+      type: object
+      properties:
+        monthNumber:
+          type: integer
+          format: int32
+        month:
+          type: string
